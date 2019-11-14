@@ -6,24 +6,17 @@ Created by: Omid Alemi <omid.alemi@gmail.com>
 '''
 
 import requests
-
 import sys
-import time
-import io
 import numpy as np
-
 import cv2
 
 TARGET_IP = '127.0.0.1'
 TARGET_PORT = 5000
-
-
 URL_SEND_PHOTO = 'http://%s:%d/newphoto'%(TARGET_IP, TARGET_PORT)
 
+
+
 CAM_SIZE = 1280
-
-
-
 cam = cv2.VideoCapture(0)
 cam.set(3, CAM_SIZE)
 cam.set(4, CAM_SIZE/1.6)
