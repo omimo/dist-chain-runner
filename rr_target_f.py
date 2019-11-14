@@ -48,7 +48,7 @@ def newphoto():
 
 
 if __name__ == '__main__':
-    port = sys.argv[1]
+    port = int(sys.argv[1])
     exe_path = sys.argv[2]
     storage_path = sys.argv[3]
 
