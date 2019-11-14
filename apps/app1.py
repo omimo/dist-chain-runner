@@ -38,7 +38,7 @@ def main():
     name = sys.argv[2]
     filepath = sys.argv[3]
 
-    result_path = 'storage/%s-%s-edges.png'%(index, name)
+    result_path = 'storage/app1/%s-%s-edges.png'%(index, name)
 
     print('----------- APP 1 -----------')
     print('index: %s'%index)

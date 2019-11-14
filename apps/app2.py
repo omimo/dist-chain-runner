@@ -28,7 +28,7 @@ def main():
 
     flipped = cv2.flip(img,0)
 
-    cv2.imwrite('storage/%s-%s-flipped.png'%(index, name), flipped)
+    cv2.imwrite('storage/app2/%s-%s-flipped.png'%(index, name), flipped)
 
 
 if __name__ == "__main__":

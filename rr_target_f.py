@@ -21,8 +21,8 @@ import subprocess
 app = Flask(__name__)
 
 
-def run_app1(index, name, img_file):
-    img_path = 'storage/%s-%s.png'%(index, name)
+def run_app(index, name, img_file):
+    img_path = '%s/%s-%s-incoming.png'%(app.config['storage_path'], index, name)
     img_file.save(img_path)
     print('saved the image to %s'%img_path)
 
@@ -42,7 +42,7 @@ def newphoto():
     print('index: %s'%index)
     print('name: %s'%name)
     
-    returncode = run_app1(index, name, img_file)
+    returncode = run_app(index, name, img_file)
 
     return 'rec,%s,%d'%(index, returncode)
 
@@ -50,7 +50,9 @@ def newphoto():
 if __name__ == '__main__':
     port = sys.argv[1]
     exe_path = sys.argv[2]
+    storage_path = sys.argv[3]
 
     app.config['exe_path'] = exe_path
+    app.config['storage_path'] = storage_path
 
     app.run(host='0.0.0.0', port=port, debug=True)
