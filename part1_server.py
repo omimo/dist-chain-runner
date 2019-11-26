@@ -21,28 +21,31 @@ import subprocess
 app = Flask(__name__)
 
 
-def run_app(index, name, img_file):
-    img_path = '%s/%s-%s-incoming.png'%(app.config['storage_path'], index, name)
+def run_app(index, name, code_id, img_file):
+    img_path = '%s/%s_%s_%s_incoming.png'%(app.config['storage_path'], index, name, code_id)
     img_file.save(img_path)
     print('saved the image to %s'%img_path)
 
     # Call the app1 to do something with these data
-    result = subprocess.run(['python', app.config['exe_path'], index, name, img_path])
+    result = subprocess.call(['python', app.config['exe_path'], index, name, img_path, code_id])
 
-    return result.returncode
+    return result #result.returncode
 
 
 @app.route('/newphoto', methods=['POST'])
 def newphoto():
     index = request.form['index']
     name = request.form['name']
+    code_id = request.form['code_id']
     img_file = request.files['img_file']
 
     print('<<<<   got a new photo   >>>>')
     print('index: %s'%index)
     print('name: %s'%name)
+    print('code id: %s'%code_id)
     
-    returncode = run_app(index, name, img_file)
+    print(img_file)
+    returncode = run_app(index, name, code_id, img_file)
 
     return 'rec,%s,%d'%(index, returncode)
 
