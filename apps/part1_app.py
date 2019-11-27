@@ -9,7 +9,7 @@ import requests
 import sys
 import subprocess
 
-TARGET_IP = '142.58.206.92'
+TARGET_IP = '142.58.206/92'
 TARGET_PORT = 5001
 URL_SEND_PHOTO = 'http://%s:%d/newphoto'%(TARGET_IP, TARGET_PORT)
 
@@ -36,10 +36,10 @@ def main():
 
     index = sys.argv[1]
     name = sys.argv[2]
-    img_path = sys.argv[3]
+    img_path = '/home/root464/dist-chain-runner/' + sys.argv[3]
     code_id = sys.argv[4]
 
-    result_path = 'storage/doS/%s_%s_%s_output.png'%(index, name, code_id)
+    result_path = '/home/root464/dist-chain-runner/storage/part1/%s_%s_%s_output.png'%(index, name, code_id)
 
     print('----------- doS -----------')
     print('index: %s'%index)
@@ -48,7 +48,7 @@ def main():
 
 
     print('>>>>>> calling <<<<<<')
-    result = subprocess.call(['python', '/home/root464/caffe-master/examples/runEpainter_o.py', img_path, code_id, result_path])
+    result = subprocess.call(['apps/run_dd_scripts.sh', code_id, img_path, result_path])
 
     print('>>>>>> done <<<<<<')
     send_photo(index, name, code_id, result_path)

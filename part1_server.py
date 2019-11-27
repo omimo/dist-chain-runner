@@ -14,7 +14,6 @@ It needs to have flask installed in the system
 from flask import Flask, escape, request
 import sys
 import time
-import numpy as np
 import subprocess
 
 
@@ -22,7 +21,7 @@ app = Flask(__name__)
 
 
 def run_app(index, name, code_id, img_file):
-    img_path = '%s/%s_%s_%s_incoming.png'%(app.config['storage_path'], index, name, code_id)
+    img_path = '%s/%s_%s_%s_input.png'%(app.config['storage_path'], index, name, code_id)
     img_file.save(img_path)
     print('saved the image to %s'%img_path)
 
@@ -51,9 +50,9 @@ def newphoto():
 
 
 if __name__ == '__main__':
-    port = int(sys.argv[1])
-    exe_path = sys.argv[2]
-    storage_path = sys.argv[3]
+    port = 5000
+    exe_path = 'apps/part1_app.py'
+    storage_path = 'storage/part1'
 
     app.config['exe_path'] = exe_path
     app.config['storage_path'] = storage_path
