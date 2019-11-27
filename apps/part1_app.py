@@ -9,7 +9,7 @@ import requests
 import sys
 import subprocess
 
-TARGET_IP = '142.58.206/92'
+TARGET_IP = '142.58.206.92'
 TARGET_PORT = 5001
 URL_SEND_PHOTO = 'http://%s:%d/newphoto'%(TARGET_IP, TARGET_PORT)
 
@@ -39,7 +39,7 @@ def main():
     img_path = '/home/root464/dist-chain-runner/' + sys.argv[3]
     code_id = sys.argv[4]
 
-    result_path = '/home/root464/dist-chain-runner/storage/part1/%s_%s_%s_output.png'%(index, name, code_id)
+    result_path = '/home/root464/dist-chain-runner/storage/part1/%s_%s_%s_output.jpg'%(index, name, code_id)
 
     print('----------- doS -----------')
     print('index: %s'%index)
