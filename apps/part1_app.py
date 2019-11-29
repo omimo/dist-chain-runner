@@ -18,7 +18,8 @@ def send_photo(index, name, code_id, img_file):
     post_data = {
         'index': index,
         'name': name,
-        'code_id': code_id
+        'code_id_part1': code_id1,
+        'code_id_part2': code_id2
     }
 
     with open(img_file, 'rb') as _img_file:
@@ -50,7 +51,7 @@ def main():
     result = subprocess.call(['apps/run_dd_scripts.sh', code_id1, img_path, result_path])
 
     print('>>>>>> done <<<<<<')
-    send_photo(index, "", code_id2, result_path)
+    send_photo(index, "", code_id1, code_id2, result_path)
 
 if __name__ == "__main__":
     main()
