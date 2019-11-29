@@ -52,6 +52,7 @@ def save_img(index, name, img_file):
 
 @app.route('/newphoto', methods=['POST'])
 def newphoto():
+    print(request.form)
     index = request.form['index']
     name = request.form['name']
     img_file = request.files['img_file']

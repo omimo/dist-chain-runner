@@ -34,10 +34,15 @@
                     });
 
                     this.on("sending", function(event, xhr, formData) {
-                        var indexCont = document.querySelector("#id-cont");
-                        var index = uid.randomUUID(6);
-                        
+                        var indexCont = document.querySelector("#index-cont");
+                        var index = uid.randomUUID(4);
+                        var name = "test-name";
+
                         indexCont.innerHTML = index;
+                        formData['name'] = name;
+                        formData['index'] = index;
+
+                        console.log(formData);
                     });
 
 
