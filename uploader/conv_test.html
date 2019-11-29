@@ -27,9 +27,16 @@
 <body>
     
     <form action="http://142.58.206.30:5000/newconv" method="POST" enctype="multipart/form-data">
-        <input type="text" name="code_id" value="1005"/>
-        <input type="text" name="index" value="4156"/>
-        <input type="text" name="name" value="frosty"/>    
+        <label for="index">ID</label>
+        <input id="index" type="text" name="index" value=""/>
+
+        <label for="code_id_part1">Part1 Code</label>
+        <input id="code_id_part1" type="text" name="code_id_part1" value="1005"/>
+
+        <label for="code_id_part2">Part2 Code</label>
+        <input id="code_id_part2" type="text" name="code_id_part2" value="1002"/>
+        
+        <!-- <input type="text" name="name" value="frosty"/>     -->
         <button type="submit">Send</button>        
     </form>
     
