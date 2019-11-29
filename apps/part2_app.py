@@ -19,22 +19,23 @@ def main():
 
     index = sys.argv[1]
     name = sys.argv[2]
-    code_id = sys.argv[3]
-    input_img_path = sys.argv[4]
+    code_id1 = sys.argv[3]
+    code_id2 = sys.argv[4]
+    input_img_path = sys.argv[5]
 
     copyfile(input_img_path, 'c:\\ePainter\\in.jpg')
 
-    result_path = 'C:\\dist-chain-runner\\storage\\part2\\%s_%s_%s_output.jpg'%( index, name, code_id)
+    result_path = 'C:\\dist-chain-runner\\storage\\part2\\%s_%s_%s_output.jpg'%( index, code_id1, code_id2)
    
 
     print('----------- APP 1 -----------')
     print('index: %s'%index)
     print('name: %s'%name)
 
-    print('code_id: %s'%code_id)
+    print('code_id: %s'%code_id2)
 
     print('filepath: %s'%input_img_path)
-    result = subprocess.run(['c:\\ePainter\\rNips.bat', code_id, name])
+    result = subprocess.run(['c:\\ePainter\\rNips.bat', code_id2, name])
     copyfile('c:\\ePainter\\out.jpg', result_path)
 
 if __name__ == "__main__":

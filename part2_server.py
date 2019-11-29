@@ -22,13 +22,13 @@ import os
 app = Flask(__name__)
 
 
-def run_app(index, name, code_id, img_file):
-    img_path = '%s\\%s_%s_%s_input.jpg'%(app.config['storage_path'], index, name, code_id)
+def run_app(index, name, code_id1, code_id2, img_file):
+    img_path = '%s\\%s_%s_%s_input.jpg'%(app.config['storage_path'], index, code_id1)
     img_file.save(img_path)
     print('saved the image to %s'%img_path)
 
     # Call the app1 to do something with these data
-    result = subprocess.run(['python', app.config['exe_path'], index, name, code_id, img_path])
+    result = subprocess.run(['python', app.config['exe_path'], index, name, code_id1, code_id2, img_path])
 
     return result.returncode
 
@@ -37,14 +37,15 @@ def run_app(index, name, code_id, img_file):
 def newphoto():
     index = request.form['index']
     name = request.form['name']
-    code_id = request.form['code_id']
+    code_id1 = request.form['code_id_part1']
+    code_id2 = request.form['code_id_part2']
     img_file = request.files['img_file']
 
     print('<<<<   got a new photo   >>>>')
     print('index: %s'%index)
     print('name: %s'%name)
     
-    returncode = run_app(index, name, code_id, img_file)
+    returncode = run_app(index, name, code_id1, code_id2, img_file)
 
     return 'rec,%s,%d'%(index, returncode)
 

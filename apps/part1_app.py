@@ -51,7 +51,7 @@ def main():
     result = subprocess.call(['apps/run_dd_scripts.sh', code_id1, img_path, result_path])
 
     print('>>>>>> done <<<<<<')
-    send_photo(index, "", code_id1, code_id2, result_path)
+    send_photo(index, "noname", code_id1, code_id2, result_path)
 
 if __name__ == "__main__":
     main()
