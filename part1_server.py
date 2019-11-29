@@ -65,7 +65,7 @@ def newphoto():
     
     returncode = save_img(index, name, img_file)
 
-    return 'saved,%s,%d'%(index, returncode)
+    return 'saved,%s,%s'%(index, returncode)
 
 
 @app.route('/newconv', methods=['POST'])
@@ -77,7 +77,8 @@ def newconv():
 
     print('<<<<   got a new conv result   >>>>')
     print('index: %s'%index)
-    print('code id: %s'%code_id)
+    print('p1 code id: %s'%code_id1)
+    print('p2 code id: %s'%code_id2)
        
     returncode = run_dd(index, code_id1, code_id2);
 

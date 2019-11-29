@@ -23,7 +23,7 @@ app = Flask(__name__)
 
 
 def run_app(index, name, code_id1, code_id2, img_file):
-    img_path = '%s\\%s_%s_%s_input.jpg'%(app.config['storage_path'], index, code_id1)
+    img_path = '%s\\%s_%s_input.jpg'%(app.config['storage_path'], index, code_id1)
     img_file.save(img_path)
     print('saved the image to %s'%img_path)
 
