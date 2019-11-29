@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Uploader</title>
+    <script src="js/dropzone.min.js"></script>
+    <script src="js/short-unique-id.min.js"></script>
+    <script>
+        Dropzone.options.photoDrop = {
+                url: "http://142.58.206.30:5000/newphoto",
+                paramName: "img_file", // The name that will be used to transfer the file
+                maxFilesize: 40, // MB
+                acceptedFiles: "image/*",
+                method: "post",
+                timeout: 8000,
+                autoProcessQueue: false,
+                init: function() {
+                    this.on('queuecomplete', function (file) {alert('done!');});
+
+                    var submitButton = document.querySelector("#submit-all");
+                        myDropzone = this; // closure
+
+                        submitButton.addEventListener("click", function() {
+                        myDropzone.processQueue(); // Tell Dropzone to process all queued files.
+                    });
+
+                    this.on("addedfile", function() {
+                        console.log('added');
+                        var submitButton = document.querySelector("#submit-all");
+                        submitButton.style.display = "block";
+                        
+                    });
+
+                    this.on("sending", function(event, xhr, formData) {
+                        var indexCont = document.querySelector("#id-cont");
+                        var index = uid.randomUUID(6);
+                        
+                        indexCont.innerHTML = index;
+                    });
+
+
+                }
+             };
+
+
+        Dropzone.autoDiscover = true;
+
+        var uid = new ShortUniqueId();
+
+    </script>
+
+    <style>
+        #submit-all {
+            display: none;
+            width: 10rem;
+            height: 3rem;
+            /* margin: 0.5rem; */
+            margin: 0.5rem auto;
+        }
+
+        #photoDrop.dropzone {
+            width: 90vw;
+            height: 50vh;
+            border: 2px dashed darkgoldenrod;
+            margin: 0.5rem auto;
+        }
+
+        #index-cont {
+            font-size: 3rem;
+            color: rgba(0,0,0,0.8);
+            padding: 1rem;
+            border: 2px solid rgba(0,0,0,0.4);
+            width: 15rem;
+            height: 3.5rem;
+            margin: 1rem auto;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <button id="submit-all">Send</button>
+    <div id="index-cont"></div>
+    <form action="http://142.58.206.30:5000/newphoto" class="dropzone" id="photoDrop" method="POST" enctype="multipart/form-data">
+        <!-- <input type="hidden" name="code_id" value="1005"/>
+        <input type="hidden" name="index" value="4156"/>
+        <input type="hidden" name="name" value="frosty"/>             -->
+    </form>
+    
+    <script>
+        
+    </script>
+</body>
+</html>

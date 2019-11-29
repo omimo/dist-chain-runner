@@ -31,31 +31,53 @@ def after_request(response):
   return response
 
 
-def run_app(index, name, code_id, img_file):
-    img_path = '%s/%s_%s_%s_input.jpg'%(app.config['storage_path'], index, name, code_id)
+def run_dd(index, code_id, img_file):
+    img_path = '%s/%s_input.jpg'%(app.config['storage_path'], index);
+ 
+    # Call the app1 to do something with these data
+    result = subprocess.call(['python', app.config['exe_path'], index, img_path, code_id])
+
+    return result #result.returncode
+
+
+
+def save_img(index, name, img_file):
+    img_path = '%s/%s_input.jpg'%(app.config['storage_path'], index)
     img_file.save(img_path)
     print('saved the image to %s'%img_path)
 
-    # Call the app1 to do something with these data
-    result = subprocess.call(['python', app.config['exe_path'], index, name, img_path, code_id])
-
-    return result #result.returncode
+   
+    return img_path
 
 
 @app.route('/newphoto', methods=['POST'])
 def newphoto():
     index = request.form['index']
     name = request.form['name']
-    code_id = request.form['code_id']
     img_file = request.files['img_file']
 
     print('<<<<   got a new photo   >>>>')
     print('index: %s'%index)
     print('name: %s'%name)
-    print('code id: %s'%code_id)
     
     print(img_file)
-    returncode = run_app(index, name, code_id, img_file)
+    
+    returncode = save_img(index, name, img_file)
+
+    return 'saved,%s,%d'%(index, returncode)
+
+
+@app.route('/newconv', methods=['POST'])
+def newconv():
+    index = request.form['index']
+    code_id = request.form['code_id']
+   
+
+    print('<<<<   got a new conv result   >>>>')
+    print('index: %s'%index)
+    print('code id: %s'%code_id)
+       
+    returncode = run_dd(index, code_id)
 
     return 'rec,%s,%d'%(index, returncode)
 

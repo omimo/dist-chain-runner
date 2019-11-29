@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Conversation</title>
+   
+
+    <style>
+        #submit-all {
+            display: none;
+            width: 10rem;
+            height: 5rem;
+            /* margin: 0.5rem; */
+            margin: 0.5rem auto;
+        }
+
+        #photoDrop.dropzone {
+            width: 90vw;
+            height: 50vh;
+            border: 2px dashed darkgoldenrod;
+            margin: 0.5rem auto;
+        }
+    </style>
+</head>
+<body>
+    
+    <form action="http://142.58.206.30:5000/newconv" method="POST" enctype="multipart/form-data">
+        <input type="text" name="code_id" value="1005"/>
+        <input type="text" name="index" value="4156"/>
+        <input type="text" name="name" value="frosty"/>    
+        <button type="submit">Send</button>        
+    </form>
+    
+    <script>
+        
+    </script>
+</body>
+</html>
