@@ -2470,6 +2470,10 @@ var Dropzone = function (_Emitter) {
           var value = additionalParams[key];
           formData.append(key, value);
         }
+
+ 
+ 
+
       }
 
       // Let the user add additional data if necessary
@@ -2487,12 +2491,17 @@ var Dropzone = function (_Emitter) {
 
         var _file = _ref22;
 
+        console.log('1-------');
+        console.log(formData);
+
         this.emit("sending", _file, xhr, formData);
       }
       if (this.options.uploadMultiple) {
         this.emit("sendingmultiple", files, xhr, formData);
       }
 
+      console.log('2-------');
+      console.log(formData);
       this._addFormElementData(formData);
 
       // Finally add the files

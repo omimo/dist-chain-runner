@@ -36,9 +36,10 @@ def main():
 
     index = sys.argv[1]
     img_path = '/home/root464/dist-chain-runner/' + sys.argv[2]
-    code_id = sys.argv[3]
+    code_id1 = sys.argv[3]
+    code_id2 = sys.argv[4]
 
-    result_path = '/home/root464/dist-chain-runner/storage/part1/%s_%s_output.jpg'%(index, code_id)
+    result_path = '/home/root464/dist-chain-runner/storage/part1/%s_%s_output.jpg'%(index, code_id1)
 
     print('----------- run dd -----------')
     print('index: %s'%index)
@@ -46,10 +47,10 @@ def main():
 
 
     print('>>>>>> calling <<<<<<')
-    result = subprocess.call(['apps/run_dd_scripts.sh', code_id, img_path, result_path])
+    result = subprocess.call(['apps/run_dd_scripts.sh', code_id1, img_path, result_path])
 
     print('>>>>>> done <<<<<<')
-    send_photo(index, "", code_id, result_path)
+    send_photo(index, "", code_id2, result_path)
 
 if __name__ == "__main__":
     main()

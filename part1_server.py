@@ -31,11 +31,11 @@ def after_request(response):
   return response
 
 
-def run_dd(index, code_id, img_file):
+def run_dd(index, code_id1, code_id2):
     img_path = '%s/%s_input.jpg'%(app.config['storage_path'], index);
  
     # Call the app1 to do something with these data
-    result = subprocess.call(['python', app.config['exe_path'], index, img_path, code_id])
+    result = subprocess.call(['python', app.config['exe_path'], index, img_path, code_id1, code_id2])
 
     return result #result.returncode
 
@@ -71,14 +71,15 @@ def newphoto():
 @app.route('/newconv', methods=['POST'])
 def newconv():
     index = request.form['index']
-    code_id = request.form['code_id']
+    code_id1 = request.form['code_id_part1']
+    code_id2 = request.form['code_id_part2']
    
 
     print('<<<<   got a new conv result   >>>>')
     print('index: %s'%index)
     print('code id: %s'%code_id)
        
-    returncode = run_dd(index, code_id)
+    returncode = run_dd(index, code_id1, code_id2);
 
     return 'rec,%s,%d'%(index, returncode)
 

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Uploader</title>
-    <script src="js/dropzone.min.js"></script>
+    <script src="js/dropzone.js"></script>
     <script src="js/short-unique-id.min.js"></script>
     <script>
         Dropzone.options.photoDrop = {
@@ -39,10 +39,11 @@
                         var name = "test-name";
 
                         indexCont.innerHTML = index;
-                        formData['name'] = name;
-                        formData['index'] = index;
+                        
+                        formData.append('name', name);
+                        formData.append('index', index);
 
-                        console.log(formData);
+                     
                     });
 
 
@@ -92,6 +93,7 @@
         <!-- <input type="hidden" name="code_id" value="1005"/>
         <input type="hidden" name="index" value="4156"/>
         <input type="hidden" name="name" value="frosty"/>             -->
+        <!-- <input type="hidden" name="testtt" value="frosty"/>  -->
     </form>
     
     <script>
