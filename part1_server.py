@@ -15,9 +15,20 @@ from flask import Flask, escape, request
 import sys
 import time
 import subprocess
+from flask_cors import CORS
+
+
 
 
 app = Flask(__name__)
+cors = CORS(app)
+
+
+def after_request(response):
+  response.headers.add('Access-Control-Allow-Origin', '*')
+  response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+  response.headers.add('Access-Control-Allow-Methods', 'POST')
+  return response
 
 
 def run_app(index, name, code_id, img_file):
