@@ -7,7 +7,8 @@ ORI=`identify -verbose $2| grep 'exif:Orientation:' | cut -d ' ' -f 6`
 
 echo "Orientation: $ORI"
 
-convert -resize '1300x1300>' "$2" "$TARGET/tmp_in.jpg"  
+convert -resize '1300x1300>' "$2" "$TARGET/tmp_in.jpg"
+cp "$TARGET/tmp_in.jpg" "$2"
 
 cd "/home/root464/caffe-master/examples"
 
