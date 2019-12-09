@@ -8,19 +8,20 @@
     <script src="js/dropzone.js"></script>
     <script src="js/short-unique-id.min.js"></script>
     <script>
+        
         Dropzone.options.photoDrop = {
-                url: "http://142.58.206.30:5000/newphoto",
+                url: "http://142.58.206.30:5001/newphoto",
                 paramName: "img_file", // The name that will be used to transfer the file
                 maxFilesize: 40, // MB
                 acceptedFiles: "image/*",
                 method: "post",
-                timeout: 8000,
+                timeout: 10000,
                 autoProcessQueue: false,
                 init: function() {
                     this.on('queuecomplete', function (file) {
-//alert('done!');
-console.log('done!');
-});
+                        //alert('done!');
+                        console.log('done!');
+                    });
 
                     var submitButton = document.querySelector("#submit-all");
                         myDropzone = this; // closure
@@ -57,6 +58,7 @@ console.log('done!');
         Dropzone.autoDiscover = true;
 
         var uid = new ShortUniqueId();
+      
 
     </script>
 
@@ -86,6 +88,7 @@ console.log('done!');
             margin: 1rem auto;
             text-align: center;
             font-family: Arial, Helvetica, sans-serif;
+            font-family: monospace;
         }
     </style>
 </head>
