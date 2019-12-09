@@ -50,7 +50,7 @@ def newphoto():
     org_file = request.files['org_file']
     p2_out_file = request.files['p2_out_file']
 
-    org_img_path = '%s\\%s_%s_org.jpg'%(app.config['storage_path'], index)
+    org_img_path = '%s\\%s_org.jpg'%(app.config['storage_path'], index)
     org_file.save(org_img_path)
     print('saved the org image to %s'%org_img_path)
 
@@ -58,7 +58,7 @@ def newphoto():
     p2_out_file.save(p2_img_path)
     print('saved the p2 image to %s'%p2_img_path)
 
-    return 'rec,%s,%d'%(index, returncode)
+    return 'ok'
 
 
 if __name__ == '__main__':

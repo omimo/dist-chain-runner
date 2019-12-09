@@ -23,7 +23,7 @@ app = Flask(__name__)
 
 
 def run_app(index, name, code_id1, code_id2, org_file, p1_out_file):
-    org_img_path = '%s\\%s_%s_%s_org.jpg'%(app.config['storage_path'], index)
+    org_img_path = '%s\\%s_org.jpg'%(app.config['storage_path'], index)
     org_file.save(org_img_path)
     print('saved the org image to %s'%org_img_path)
 
