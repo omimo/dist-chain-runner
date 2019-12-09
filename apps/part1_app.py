@@ -13,7 +13,7 @@ TARGET_IP = '142.58.206.92'
 TARGET_PORT = 5001
 URL_SEND_PHOTO = 'http://%s:%d/newphoto'%(TARGET_IP, TARGET_PORT)
 
-def send_photo(index, name, code_id, p1_in_file, p1_out_file):
+def send_photo(index, name, code_id1, code_id2, p1_in_file, p1_out_file):
 
     post_data = {
         'index': index,
