@@ -22,28 +22,42 @@
 		load_images();
 	});
 
+	var last_count = 0;
+	var last_restult_str = "";
+
 	function load_images() {
 		$.ajax({url: "/get_images", success: function(result){
 			var urls = JSON.parse(result);
 			console.log(urls);
-			$("#wrapper").empty();
-			$("#wrapper").append('<div id="imgs" class="owl-carousel"></div>')
+			
+			if (urls.length !== last_count || last_restult_str !== result) {
+				console.log('Found new images. Updating...');
+				last_count = urls.length;
+				last_restult_str = result;
 
-			for (var i=0;i<urls.length;i++) {			
-				var item = '<div class="item">';
-					item+= '<img src="/'+urls[i]+'">';
-					item+= '</div>'
-				$("#imgs").append(item);
+				$("#wrapper").empty();
+				$("#wrapper").append('<div id="imgs" class="owl-carousel"></div>')
+
+
+				for (var i=0;i<urls.length;i++) {			
+					var item = '<div class="item">';
+						item+= '<img src="/'+urls[i]+'">';
+						item+= '</div>'
+					$("#imgs").append(item);
+				}
+
+				$("#imgs").owlCarousel({
+					autoPlay: 4000,
+					items : urls.length,
+					itemsDesktop : [2909,3],
+					itemsDesktopSmall : [979,3]
+				});
+			} else {
+				console.log('Found no new image!');
 			}
+			
 
-			$("#imgs").owlCarousel({
-				autoPlay: 3000,
-				items : urls.length,
-				itemsDesktop : [1199,3],
-				itemsDesktopSmall : [979,3]
-			});
-
-			setTimeout(load_images, 20000)
+			setTimeout(load_images, 15000)
 			//$("#imgs").html(result);
   	  }});
 	}

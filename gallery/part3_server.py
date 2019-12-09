@@ -18,7 +18,7 @@ import subprocess
 from flask_cors import CORS
 import json
 import glob
-
+import os
 
 
 app = Flask(__name__)
@@ -37,7 +37,7 @@ def get_images():
     
        
     image_files = glob.glob(app.config['storage_path']+'/*.jpg')
-    
+    image_files.sort(key=os.path.getmtime, reverse=True)
 
     return json.dumps(image_files)
 
@@ -50,9 +50,9 @@ def newphoto():
     org_file = request.files['org_file']
     p2_out_file = request.files['p2_out_file']
 
-    org_img_path = '%s\\%s_org.jpg'%(app.config['storage_path'], index)
-    org_file.save(org_img_path)
-    print('saved the org image to %s'%org_img_path)
+    #org_img_path = '%s\\%s_org.jpg'%(app.config['storage_path'], index)
+    #org_file.save(org_img_path)
+    #print('saved the org image to %s'%org_img_path)
 
     p2_img_path = '%s\\%s_%s_%s_p2.jpg'%(app.config['storage_path'], index, code_id1, code_id2)
     p2_out_file.save(p2_img_path)
