@@ -27,13 +27,13 @@ def send_photo(index, name, code_id1,code_id2, org_file, p2_out_file):
         'code_id_part2': code_id2
     }
 
-    with open(org_file, 'rb') as _img_file:
-        files={'org_file': _img_file}
-    
-    with open(p2_out_file, 'rb') as _img_file:
-        files={'p2_out_file': _img_file}
+    with open(org_file, 'rb') as org_img_file,  open(p2_out_file, 'rb') as out_img_file:
+        files={
+            'org_file': org_img_file,
+            'p2_out_file': out_img_file
+        }
 
-    r = requests.post(URL_SEND_PHOTO, data=post_data, files=files)
+        r = requests.post(URL_SEND_PHOTO, data=post_data, files=files)
 
     print(r.status_code, r.reason, r.content)
 
@@ -66,7 +66,7 @@ def main():
     result = subprocess.run(['c:\\ePainter\\rNips.bat', code_id2, name])
     copyfile('c:\\ePainter\\out.jpg', result_path)
 
-    send_photo(index, name, code_id1,code_id2, org_img_path, p1_out_img_path)
+    send_photo(index, name, code_id1,code_id2, org_img_path, result_path)
 
 if __name__ == "__main__":
     main()
