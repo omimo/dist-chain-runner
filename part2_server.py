@@ -27,7 +27,7 @@ def run_app(index, name, code_id1, code_id2, org_file, p1_out_file):
     org_file.save(org_img_path)
     print('saved the org image to %s'%org_img_path)
 
-    p1_img_path = '%s\\%s_%s_%s_input.jpg'%(app.config['storage_path'], index, code_id1)
+    p1_img_path = '%s\\%s_%s_input.jpg'%(app.config['storage_path'], index, code_id1)
     p1_out_file.save(p1_img_path)
     print('saved the p1 image to %s'%p1_img_path)
 
