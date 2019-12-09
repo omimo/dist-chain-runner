@@ -13,7 +13,7 @@ TARGET_IP = '142.58.206.92'
 TARGET_PORT = 5001
 URL_SEND_PHOTO = 'http://%s:%d/newphoto'%(TARGET_IP, TARGET_PORT)
 
-def send_photo(index, name, code_id, img_file):
+def send_photo(index, name, code_id, p1_in_file, p1_out_file):
 
     post_data = {
         'index': index,
@@ -22,10 +22,13 @@ def send_photo(index, name, code_id, img_file):
         'code_id_part2': code_id2
     }
 
-    with open(img_file, 'rb') as _img_file:
-        files={'img_file': _img_file}
+    with open(p1_in_file, 'rb') as _img_file:
+        files={'org_file': _img_file}
+    
+    with open(p1_out_file, 'rb') as _img_file:
+        files={'p1_out_file': _img_file}
 
-        r = requests.post(URL_SEND_PHOTO, data=post_data, files=files)
+    r = requests.post(URL_SEND_PHOTO, data=post_data, files=files)
 
     print(r.status_code, r.reason, r.content)
 
@@ -51,7 +54,7 @@ def main():
     result = subprocess.call(['apps/run_dd_scripts.sh', code_id1, img_path, result_path])
 
     print('>>>>>> done <<<<<<')
-    send_photo(index, "noname", code_id1, code_id2, result_path)
+    send_photo(index, "noname", code_id1, code_id2, img_path, result_path)
 
 if __name__ == "__main__":
     main()

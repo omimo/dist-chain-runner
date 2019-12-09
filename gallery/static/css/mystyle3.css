@@ -1,0 +1,12 @@
+#imgs .item{
+  margin: 3px;
+}
+#imgs .item img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+body {
+    background-color: black;
+}

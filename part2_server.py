@@ -22,13 +22,17 @@ import os
 app = Flask(__name__)
 
 
-def run_app(index, name, code_id1, code_id2, img_file):
-    img_path = '%s\\%s_%s_%s_input.jpg'%(app.config['storage_path'], index, code_id1)
-    img_file.save(img_path)
-    print('saved the image to %s'%img_path)
+def run_app(index, name, code_id1, code_id2, org_file, p1_out_file):
+    org_img_path = '%s\\%s_%s_%s_org.jpg'%(app.config['storage_path'], index)
+    org_file.save(org_img_path)
+    print('saved the org image to %s'%org_img_path)
+
+    p1_img_path = '%s\\%s_%s_%s_input.jpg'%(app.config['storage_path'], index, code_id1)
+    p1_out_file.save(p1_img_path)
+    print('saved the p1 image to %s'%p1_img_path)
 
     # Call the app1 to do something with these data
-    result = subprocess.run(['python', app.config['exe_path'], index, name, code_id1, code_id2, img_path])
+    result = subprocess.run(['python', app.config['exe_path'], index, name, code_id1, code_id2, org_img_path, p1_img_path])
 
     return result.returncode
 
@@ -39,13 +43,14 @@ def newphoto():
     name = request.form['name']
     code_id1 = request.form['code_id_part1']
     code_id2 = request.form['code_id_part2']
-    img_file = request.files['img_file']
+    org_file = request.files['org_file']
+    p1_out_file = request.files['p1_out_file']
 
     print('<<<<   got a new photo   >>>>')
     print('index: %s'%index)
     print('name: %s'%name)
     
-    returncode = run_app(index, name, code_id1, code_id2, img_file)
+    returncode = run_app(index, name, code_id1, code_id2, org_file, p1_out_file)
 
     return 'rec,%s,%d'%(index, returncode)
 
